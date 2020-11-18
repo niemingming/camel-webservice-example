@@ -1,0 +1,35 @@
+# 配置数据库
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: camel
+    password: camel
+    url: jdbc:mysql://localhost:3306/camel_webservice?autoReconnect=true&allowMultiQueries=true&useUnicode=true&characterEncoding=UTF8&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      auto-commit: true
+      minimum-idle: 10
+      connection-timeout: 2000
+      maximum-pool-size: 20
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+      max-lifetime: 360000
+      idle-timeout: 360000
+
+#日志输出
+logging:
+  level:
+    root: INFO
+    com.netflix.config.sources: ERROR
+
+# 业务配置项
+camel:
+  dataFormat: PAYLOAD
+  listenerAddress: jetty:http://0.0.0.0
+  defaultPort: 8888
+  routeIdPrefx: route-
+  refreshPeriod: 10000   #路由同步频率,默认每10秒同步一次
+  retrytimes: 5  #路由失败重试次数，默认是5次，-1表示不限制

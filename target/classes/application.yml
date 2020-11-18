@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: camel_webservice
+  profiles:
+    active: dev
+
+server:
+  port: 8080
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
